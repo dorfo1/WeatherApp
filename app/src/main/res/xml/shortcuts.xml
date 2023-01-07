@@ -1,0 +1,14 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="search"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:shortcutShortLabel="@string/title_search"
+        android:shortcutLongLabel="@string/title_search"
+        android:shortcutDisabledMessage="@string/title_search">
+        <intent
+            android:action="android.intent.action.SEARCH"
+            android:targetPackage="br.com.weatherapp"
+            android:targetClass="br.com.weatherapp.features.main.MainActivity" />
+    </shortcut>
+</shortcuts>

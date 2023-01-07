@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="title_activity_main">MainActivity</string>
+
+
+    <string name="title_home">Home</string>
+    <string name="title_search">Buscar</string>
+    <string name="denied_message">Para continuar, você precisa dar permissões de localização</string>
+    <string name="ask_permission">Dar permissão</string>
+    <string name="weather_error_message">Falha ao buscar informações sobre o clima</string>
+    <string name="try_again">Tentar novamente</string>
+    <string name="upcoming_days">Próximos dias</string>
+    <string name="title_search_city">Busque uma cidade brasileira</string>
+    <string name="empty_search_message">Preencha o campo para buscar</string>
+    <string name="city_search_message_error">Falha ao encontrar o clima da cidade</string>
+    <string name="today_date_message">Hoje, %s de %s</string>
+    <string name="tomorrow_date_message">Amanha, %s de %s</string>
 </resources>

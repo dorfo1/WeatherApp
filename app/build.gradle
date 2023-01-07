@@ -1,20 +1,21 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
     namespace 'br.com.weatherapp'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "br.com.weatherapp"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "br.com.weatherapp.TestApplicationJUnitRunner"
     }
 
     buildTypes {
@@ -30,6 +31,22 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    flavorDimensions 'season'
+    productFlavors {
+        summer {}
+        winter {}
+        spring {}
+        autumn {}
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+    testOptions {
+        animationsDisabled = true
+    }
 }
 
 dependencies {
@@ -37,7 +54,56 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+
+    def lottieVersion = "5.2.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    def retrofit_version = "2.9.0"
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+
+    def koin_version= "3.2.2"
+
+    // Koin Core features
+    implementation "io.insert-koin:koin-core:$koin_version"
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    testImplementation "io.insert-koin:koin-test-junit5:$koin_version"
+    androidTestImplementation "io.insert-koin:koin-test:$koin_version"
+    androidTestImplementation "io.insert-koin:koin-test-junit5:$koin_version"
+
+
+    def koin_android_version= "3.3.0"
+    // Koin main features for Android
+    implementation "io.insert-koin:koin-android:$koin_android_version"
+
+
+
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    debugImplementation 'androidx.fragment:fragment-testing:1.5.5'
+    debugImplementation 'androidx.test:rules:1.5.0'
+    debugImplementation 'androidx.test.ext:junit:1.1.4'
+    debugImplementation 'com.github.tmurakami:dexopener:2.0.5'
+    debugImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    debugImplementation 'androidx.test.espresso:espresso-contrib:3.5.0'
+    debugImplementation "androidx.test.espresso:espresso-intents:3.5.0"
+
+    def mockk_version = "1.13.3"
+    testImplementation "io.mockk:mockk:${mockk_version}"
+    androidTestImplementation "io.mockk:mockk-android:1.13.3"
+
+
+
+
+    def arch_version = "2.1.0"
+    testImplementation "androidx.arch.core:core-testing:${arch_version}"
+    androidTestImplementation "androidx.arch.core:core-testing:${arch_version}"
 }

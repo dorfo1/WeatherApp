@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".features.main.home.HomeFragment">
+
+    <ImageView
+        android:id="@+id/iv_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        app:tint="@color/button_text_color_dark"
+        android:src="@drawable/ic_baseline_place_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_city"
+        style="@style/Text.Subtitle.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_place"
+        app:layout_constraintStart_toEndOf="@id/iv_place"
+        app:layout_constraintTop_toTopOf="@id/iv_place"
+        tools:text="São Paulo" />
+
+    <ImageButton
+        android:id="@+id/iv_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:importantForAccessibility="no"
+        app:tint="@color/button_text_color_dark"
+        android:src="@drawable/ic_baseline_calendar_today_24"
+        app:layout_constraintBottom_toBottomOf="@id/iv_place"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_place" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/weather_lottie"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_margin="32dp"
+        app:lottie_loop="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_place"
+        tools:lottie_rawRes="@raw/weather_rainynight" />
+
+    <TextView
+        android:id="@+id/tv_temperature"
+        style="@style/Text.Title.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="@id/weather_lottie"
+        app:layout_constraintStart_toStartOf="@id/weather_lottie"
+        app:layout_constraintTop_toBottomOf="@id/weather_lottie"
+        tools:text="30 °C " />
+
+    <TextView
+        android:id="@+id/tv_wind"
+        style="@style/Text.Body.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:drawablePadding="8dp"
+        app:drawableStartCompat="@drawable/ic_wind"
+        app:layout_constraintEnd_toStartOf="@id/tv_air_humidity"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_temperature"
+        tools:text=" 8km/h" />
+
+    <TextView
+        android:id="@+id/tv_air_humidity"
+        style="@style/Text.Subtitle.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="4dp"
+        app:drawableStartCompat="@drawable/ic_outline_water_drop_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_wind"
+        app:layout_constraintTop_toBottomOf="@id/tv_temperature"
+        tools:text=" 8km/h" />
+
+    <TextView
+        android:id="@+id/tv_day"
+        style="@style/Text.Subtitle.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/rv_more_data"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Hoje, 28 dez" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_more_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_weather_data_view" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/sucess_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="iv_place,iv_calendar,rv_more_data,tv_day,tv_air_humidity,tv_city,tv_temperature,tv_wind,weather_lottie" />
+
+    <include
+        android:id="@+id/layout_error"
+        layout="@layout/layout_home_error"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <include
+        android:id="@+id/layout_permission_denied"
+        layout="@layout/layout_home_permission_denied"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
